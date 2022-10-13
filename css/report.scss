@@ -1,0 +1,47 @@
+.report__table {
+    margin-top: 30px;
+    display:flex;
+    justify-content:center;
+    .table--two {
+        tr {
+            th {
+                border-right: 1px solid white;
+                background-color: #5F9DF7;
+                height: 23px;
+                text-transform: uppercase;
+                
+            }
+        }
+    }
+
+    .report--term {
+        tr {
+        td{
+            color: blue;
+            text-decoration: underline;
+        }}
+        
+    }
+    .report--course {
+        tr {
+        td{
+            color: #2192FF;
+            text-decoration: underline;
+
+        }}
+    }
+}
+.title-bar {
+    td {
+        border-right: 1px solid white;
+    }
+}
+
+.table--last td{
+    
+        border:1px solid black;
+}
+.table--right {
+    table{
+    margin-left: 50px;
+}}
