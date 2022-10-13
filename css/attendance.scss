@@ -1,0 +1,42 @@
+.attendance__title {
+    margin:20px;
+}
+.attendance__content {
+    display:flex;
+    justify-content:center;
+    text-align: center;
+    table {
+        td {
+            padding: 30px;
+            border: 1px solid black;
+        }
+
+        .Image {
+            padding: 30px;
+
+        }
+    }
+
+    img {
+    width: 150px;
+    height: 200px;
+        }
+
+        textarea {
+            border: none;
+        }
+        span {
+            padding-left:3px;}
+}
+
+.attendance__footer {
+    margin-top:20px;
+    text-align: center;
+    button {
+        width: 80px;
+        height: 45px;
+        border-radius: 10px;
+        margin: 10px;
+        text-align: center;
+    }
+}

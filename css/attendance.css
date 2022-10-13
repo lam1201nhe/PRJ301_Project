@@ -1,0 +1,38 @@
+.attendance__title {
+  margin: 20px;
+}
+
+.attendance__content {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.attendance__content table td {
+  padding: 30px;
+  border: 1px solid black;
+}
+.attendance__content table .Image {
+  padding: 30px;
+}
+.attendance__content img {
+  width: 150px;
+  height: 200px;
+}
+.attendance__content textarea {
+  border: none;
+}
+.attendance__content span {
+  padding-left: 3px;
+}
+
+.attendance__footer {
+  margin-top: 20px;
+  text-align: center;
+}
+.attendance__footer button {
+  width: 80px;
+  height: 45px;
+  border-radius: 10px;
+  margin: 10px;
+  text-align: center;
+}/*# sourceMappingURL=attendance.css.map */
