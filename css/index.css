@@ -31,7 +31,6 @@
 .timetable__section--table {
   width: 80%;
   height: 70vh;
-  border: 1px solid black;
   margin-top: 25px;
 }
 
@@ -43,7 +42,7 @@
 
 .timetable__section--header .timetable__section--year {
   width: 100%;
-  height: 2.5vh;
+  height: 5vh;
   border: 1px solid black;
 }
 .timetable__section--header .timetable__section--year ul {
