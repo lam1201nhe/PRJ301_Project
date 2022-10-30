@@ -57,12 +57,13 @@ public class LoginController extends HttpServlet {
         Account account = db.get(username, password);
         if(account == null)
         {
-            response.getWriter().println("login failed!");
+            request.getRequestDispatcher("loginfail.html").forward(request, response);
         }
         else
         {
             request.getSession().setAttribute("account", account);
-            response.getWriter().println("login successful!");
+//             response.getWriter().println("login successful!");
+            request.getRequestDispatcher("timetable.html").forward(request, response);
         }
     }
 
