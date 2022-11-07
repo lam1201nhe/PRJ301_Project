@@ -32,7 +32,7 @@ public class MyCustom extends SimpleTagSupport {
             // out.println("<strong>" + attribute_1 + "</strong>");
             // out.println("    <blockquote>");
             out.println("<h1>This has been wrote by CustomTag </h1>");
-            out.println("<a href=\"http://localhost:9999/PRJ301_Project/login.html\">Login Page</a>");
+            out.println("<a href=\"http://localhost:9999/PRJ301_Project/login\">Login Page</a>");
 
             JspFragment f = getJspBody();
             if (f != null) {

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
+import model.Lecturer;
 
 /**
  *
@@ -18,9 +19,31 @@ import model.Account;
  */
 public class AccountDBContext extends DBContext<Account> {
 
-    public Account get(String username, String password) {
+    public Lecturer get(String username, String password) {
         try {
-            String sql = "SELECT username, displayname FROM Account \n"
+            String sql = "SELECT username, lid FROM Account \n"
+                    + "WHERE username = ? AND [password] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            stm.setString(2, password);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                Lecturer lecturer = new Lecturer();
+                int id = rs.getInt("lid");
+                lecturer.setId(id);
+                return lecturer;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+        
+    }
+    
+    public Account getAccount(String username, String password) {
+        try {
+            String sql = "SELECT username, lid, displayname FROM Account \n"
                     + "WHERE username = ? AND [password] = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, username);

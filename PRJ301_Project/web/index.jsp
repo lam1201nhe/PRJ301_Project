@@ -13,7 +13,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
         <lam:MyCustom/>
     </body>
 </html>
