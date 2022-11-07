@@ -1,6 +1,88 @@
-.heading {
-  background-color: #7978FF;
-  border-right: 1px solid white;
-  border-top: 1px solid white;
+.timetable__header--logo {
+  width: 90%;
+  height: 9vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 65px;
 }
 
+.timetable__header--logo img {
+  width: 100px;
+  height: 50px;
+}
+
+.timetable__section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.explain{
+    margin-left: 69px;
+}
+
+.timetable__section table {
+    width: 90%;
+
+}
+
+.timetable__section table p {
+    font-size: 13px;
+}
+
+.heading {
+    border-top : 1px solid white;
+    border-right: 1px solid white; 
+    color: black;
+    background-color: #2146C7;
+}
+
+.label-success {
+    background-color: #379237;
+    padding: 2px 5px;
+    color: white;
+    border-radius: 5px;
+}
+
+td, th {
+    font-size: 13px;
+}
+
+.info{
+ font-size: 12px;
+
+}
+.info1{
+    margin-top: 40px;
+    font-size: 25px;
+    color: black;
+}
+
+.attendance__header {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    padding: 8px;
+    border-radius: 3px;
+}
+
+.label-primary {
+    background-color: #002E94;
+    color: white;
+    border-radius: 5px;
+    padding: 2px 5px;
+}
+
+.timetable {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100%;
+  
+}
+
+footer {
+    margin-left: 60px;
+}

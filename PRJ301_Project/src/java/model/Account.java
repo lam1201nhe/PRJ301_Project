@@ -12,6 +12,7 @@ public class Account {
     private String username;
     private String password;
     private String displayname;
+    private Lecturer lecturer;
 
     public String getUsername() {
         return username;
@@ -29,6 +30,14 @@ public class Account {
         this.password = password;
     }
 
+    public Lecturer getLecturer() {
+        return lecturer;
+    }
+
+    public void setLecturer(Lecturer lecturer) {
+        this.lecturer = lecturer;
+    }
+
     public String getDisplayname() {
         return displayname;
     }
@@ -36,6 +45,10 @@ public class Account {
     public void setDisplayname(String displayname) {
         this.displayname = displayname;
     }
+    
+    
+
+    
     
     
 }

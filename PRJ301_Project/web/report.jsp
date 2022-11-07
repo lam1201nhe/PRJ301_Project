@@ -1,11 +1,12 @@
+<%-- 
+    Document   : report
+    Created on : Nov 7, 2022, 11:42:34 AM
+    Author     : Admin
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Attendance Report</title>
-    <link rel="stylesheet" href="./css/report.css" />
+<link rel="stylesheet" href="./css/report.css" />
     <!-- Font Awesome -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -21,7 +22,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css"
       rel="stylesheet"
     />
-  </head>
   <body>
     <div class="report">
       <header class="report__header">
