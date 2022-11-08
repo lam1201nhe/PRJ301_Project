@@ -27,7 +27,7 @@ public abstract class BaseAuthenticationController extends HttpServlet{
             //
             processPost(req, resp);
         }else {
-            resp.getWriter().println("access denied!!");
+            resp.sendRedirect("../error404.jsp");
         }
     }
     
@@ -40,7 +40,7 @@ public abstract class BaseAuthenticationController extends HttpServlet{
             //
             processGet(req, resp);
         }else {
-            resp.getWriter().println("access denied!!");
+            resp.sendRedirect("../error404.jsp");
         }
     }
     
