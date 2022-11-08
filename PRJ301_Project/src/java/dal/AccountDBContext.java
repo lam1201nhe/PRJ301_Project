@@ -54,6 +54,10 @@ public class AccountDBContext extends DBContext<Account> {
                 Account account = new Account();
                 account.setUsername(rs.getString("username"));
                 account.setDisplayname(rs.getString("displayname"));
+                
+                Lecturer lecturer = new Lecturer();
+                lecturer.setId(rs.getInt("lid"));
+                account.setLecturer(lecturer);
                 return account;
             }
         } catch (SQLException ex) {

@@ -54,47 +54,113 @@
         margin-top: 20px;
         text-align: center;
     }
-    .attendance__footer button {
+    .attendance__footer input {
         width: 80px;
         height: 45px;
         border-radius: 10px;
         margin: 10px;
         text-align: center;
+        color: white;
+        font-weight: bold;
     }/*# sourceMappingURL=attendance.css.map */
+    .timetable__header--logo {
+        width: 90%;
+        height: 9vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 30px 65px;
+    }
+
+    .timetable__header--logo img {
+        width: 100px;
+        height: 50px;
+    }
+    .attendance__header {
+        display: flex;
+        width: 90%;
+        justify-content: space-between;
+        padding: 8px;
+        border-radius: 3px;
+    }
+    
+    .sub-view {
+        font-size: 13px;
+        font-weight: bold;
+    }
+    
+    .attendance__footer a {
+        padding: 11px 25px;
+        background-color: #B73E3E;
+        font-weight: bold;
+        border-radius: 10px;
+        color: white;
+        border: 2px solid black;
+    }
+    
+    
 </style>
 <body>
     <div class="attendance container-fluid">
-        <header class="attendance__header">
-            <div style="background-color: #d8d9cf" class="attendance__header--left">
-                <span
-                    style="
-                    color: blue;
-                    border-right: 1px solid black;
-                    padding-right: 5px;
-                    "
-                    ><a>Home</a></span
-                >
-                <span>View TimeTable</span>
+        <header class="attendancehuy__header">
+            <div class="timetable__header--logo">
+                <h1>FPT University Academic Portal</h1>
+                <img src="../img/logo.png" alt="logo">
             </div>
-            <div class="attendance__header--right"></div>
+            <div style="width: 100%; justify-content: center; display: flex;">
+                <div class="attendance__header" style="background-color: #d8d9cf">
+                    <div class="attendance__header--left">
+                        <span style="
+                              color: blue;
+                              border-right: 1px solid black;
+                              padding-right: 5px;
+                              "><a href="timetable?lid=${param.lid}">Home</a></span>
+                        <span>View Take Attendance</span>
+                    </div>
+                    <div class="attendance__header--right">
+                        <span
+                            style="background-color: #54B435; padding: 5px; color: white; border-radius: 5px; font-size: 11px;">CAMPUS:
+                            FPTU-Hoà Lạc</span>
+                    </div>
+                </div>
+            </div>
         </header>
+       
+        <form action="attendance" method="post">
         <div class="attendance__title">
             <h1 style="text-align: center; color: #628e90; font-weight: bold">
                 Taking Attendance
             </h1>
+            Date: <span style="font-weight: bold">${requestScope.ses.date}</span> - <span style="font-weight:bold">[Slot ${requestScope.ses.slot.id}] </span> 
+            - 
+            <c:if test="${requestScope.ses.attended}">
+                <span style="color: green; font-weight: bold">Attended</span>
+            </c:if>
+                <c:if test="${!requestScope.ses.attended}">
+                <span style="color: red; font-weight: bold">Not yet</span>
+            </c:if>
+            <br><!-- comment -->
+            
             Teacher:
-            <span style="color: #628e90; font-weight: bold">${requestScope.ses.lecturer.name}</span>
+            <span  style="color: #628e90; font-weight: bold">${requestScope.ses.lecturer.name}</span>
             <span> - </span>
-            <select name="teacher" id="teacher">
-                <option value="">Slot 1 - SE1633</option>
-                <option value="">Slot 2 - SE1633</option>
-                <option value="">Slot 3 - SE1712</option>
-                <option value="">Slot 4 - SE1621</option>
-            </select>
+            
+            <select name="groups" id="teacher" >
+                <option value="${requestScope.ses.group.id}" selected>${requestScope.ses.group.name}</option>
+                <c:forEach items="${requestScope.listGroup}" var="o">
+                    <c:if test="${o.id ne requestScope.ses.group.id}">
+                        <option value="${o.id}">${o.name}</option>
+                    </c:if>
+                </c:forEach>
+               
+            </select>    
+                <input class="sub-view" type="submit" value="View"/>
+
+
         </div>
-        <form action="attendance" method="post">
             <div class="attendance__content">
-                <input type="hidden" name="sesid" value="${param.lid}"/>
+                <input type="hidden" value="${param.lid}" name="lectureid"/>
+                <input type="hidden" name="sesid" value="${param.id}"/>
                 <table>
                     <thead style="background-color: #5f9df7">
                         <tr>
@@ -119,8 +185,8 @@
                                 <td>
                                     <img
                                         width="100px;"
-                                        src=""
-                                        alt=""
+                                        src="../img/${a.student.image}"
+                                        alt="hocsinh"
                                         />
                                 </td>
                                 <td>
@@ -162,6 +228,7 @@
 
             </div>
             <footer class="attendance__footer">
+                <a href="timetable?lid=1">Back</a>
                 <input style="padding: 5px; background-color: #2146C7; border-radius: 10px; " type="submit" value="Save">
             </footer>
         </form>   

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : loginfail
-    Created on : Nov 7, 2022, 11:42:10 AM
+    Document   : error404
+    Created on : Nov 8, 2022, 7:18:34 PM
     Author     : Admin
 --%>
 
@@ -146,7 +146,7 @@
         <div class="noise"></div>
         <div class="overlay"></div>
         <div class="terminal">
-            <h1>Login <span class="errorcode">Fail</span></h1>
+            <h1>Page <span class="errorcode">Not Found</span></h1>
             <p class="output">The page you are looking for might have been removed, had its name changed or is temporarily unavailable.</p>
             <p class="output">Please try to <a href="#1">go back</a> or <a href="#2">return to the homepage</a>.</p>
             <p class="output">Good luck.</p>

@@ -13,8 +13,17 @@ import java.util.ArrayList;
 public class Student {
     private int id;
     private String name;
+    private String image;
     private ArrayList<Attandance> atts = new ArrayList<>();
     private ArrayList<Group> groups = new ArrayList<>();
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public int getId() {
         return id;

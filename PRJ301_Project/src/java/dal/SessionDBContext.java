@@ -4,6 +4,7 @@
  */
 package dal;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,7 +24,8 @@ import model.TimeSlot;
  *
  * @author Admin
  */
-public class SessionDBContext extends DBContext<Session>{
+public class SessionDBContext extends DBContext<Session> {
+
     @Override
     public void insert(Session model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -97,7 +99,7 @@ public class SessionDBContext extends DBContext<Session>{
                     + "	,t.tid,t.[description] tdescription\n"
                     + "	,l.lid,l.lname\n"
                     + "	,sub.subid,sub.subname\n"
-                    + "	,s.stdid,s.stdname\n"
+                    + "	,s.stdid,s.stdname,s.[image]\n"
                     + "	,ISNULL(a.present,0) present, ISNULL(a.[description],'') [description]\n"
                     + "		FROM [Session] ses\n"
                     + "		INNER JOIN Room r ON r.rid = ses.rid\n"
@@ -149,6 +151,7 @@ public class SessionDBContext extends DBContext<Session>{
                 Student s = new Student();
                 s.setId(rs.getInt("stdid"));
                 s.setName(rs.getString("stdname"));
+                s.setImage(rs.getString("image"));
                 //read attandance
                 Attandance a = new Attandance();
                 a.setStudent(s);
@@ -168,5 +171,119 @@ public class SessionDBContext extends DBContext<Session>{
     public ArrayList<Session> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
+    public ArrayList<Session> filter(int lid, Date from, Date to) {
+        ArrayList<Session> list = new ArrayList<>();
+        try {
+            String sql = "select ses.sesid, ses.[index], ses.[date],ses.attanded\n"
+                    + ", g.gid, g.gname\n"
+                    + ", r.rid, r.rname\n"
+                    + ", t.tid, t.[description]\n"
+                    + ", l.lid, l.lname\n"
+                    + ", s.subid, s.subname\n"
+                    + "from [Session] ses\n"
+                    + "inner join Room r on r.rid = ses.rid\n"
+                    + "inner join TimeSlot t on t.tid = ses.tid\n"
+                    + "inner join Lecturer l on l.lid = ses.lid\n"
+                    + "inner join [Group] g on g.gid = ses.gid\n"
+                    + "inner join [Subject] s on s.subid = g.subid\n"
+                    + "where \n"
+                    + "l.lid = ?\n"
+                    + "and ses.[date] >= ?\n"
+                    + "and ses.[date] <= ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, lid);
+            stm.setDate(2, from);
+            stm.setDate(3, to);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Session session = new Session();
+                Lecturer l = new Lecturer();
+                Room r = new Room();
+                Group g = new Group();
+                TimeSlot t = new TimeSlot();
+                Subject sub = new Subject();
+
+                session.setId(rs.getInt("sesid"));
+                session.setDate(rs.getDate("date"));
+                session.setIndex(rs.getInt("index"));
+                session.setAttended(rs.getBoolean("attanded"));
+
+                l.setId(rs.getInt("lid"));
+                l.setName(rs.getString("lname"));
+                session.setLecturer(l);
+
+                g.setId(rs.getInt("gid"));
+                g.setName(rs.getString("gname"));
+                session.setGroup(g);
+
+                sub.setId(rs.getInt("subid"));
+                sub.setName(rs.getString("subname"));
+                g.setSubject(sub);
+
+                r.setId(rs.getInt("rid"));
+                r.setName(rs.getString("rname"));
+                session.setRoom(r);
+
+                t.setId(rs.getInt("tid"));
+                t.setDescription(rs.getString("description"));
+                session.setSlot(t);
+
+                list.add(session);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    public ArrayList<Session> list(int lid) {
+        ArrayList<Session> list = new ArrayList<>();
+        try {
+            String sql = "select ses.[date], ses.sesid, ses.attanded,\n"
+                    + "g.gid, g.gname,\n"
+                    + "r.rid, r.rname\n"
+                    + ",l.lid, l.lname\n"
+                    + ",t.tid, t.[description]\n"
+                    + "from [Session] ses\n"
+                    + "inner join [Group] g on g.gid = ses.gid\n"
+                    + "inner join [Room] r on r.rid = ses.rid\n"
+                    + "inner join [Lecturer] l on l.lid = ses.lid\n"
+                    + "inner join [TimeSlot] t on t.tid = ses.tid\n"
+                    + "where ses.lid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, lid);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Session s = new Session();
+                Lecturer l = new Lecturer();
+                Room r = new Room();
+                TimeSlot t = new TimeSlot();
+                Group g = new Group();
+                
+                s.setId(rs.getInt("sesid"));
+                s.setDate(rs.getDate("date"));
+                s.setAttended(rs.getBoolean("attanded"));
+                
+                r.setId(rs.getInt("rid"));
+                r.setName(rs.getString("rname"));
+                s.setRoom(r);
+                l.setId(rs.getInt("lid"));
+                l.setName(rs.getString("lname"));
+                s.setLecturer(l);
+                t.setId(rs.getInt("tid"));
+                t.setDescription(rs.getString("description"));
+                s.setSlot(t);
+                g.setId(rs.getInt("gid"));
+                g.setName(rs.getString("gname"));
+                s.setGroup(g);
+                
+                list.add(s);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
 }
