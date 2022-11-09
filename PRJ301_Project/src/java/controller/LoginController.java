@@ -68,7 +68,7 @@ public class LoginController extends HttpServlet {
 
             //response.sendRedirect("lecturer/attendance?id=1&lid=" + lid.getId() );
            //response.sendRedirect("lecturer/timetable?lid=" + account.getLecturer().getId());
-           response.sendRedirect("lecturer/report?lid=" + account.getLecturer().getId());
+           response.sendRedirect("lecturer/timetable?lid=" + account.getLecturer().getId());
 //            response.sendRedirect("timetable.jsp");
 
 
